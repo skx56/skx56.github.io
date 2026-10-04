@@ -230,12 +230,8 @@ export default function ProfileCard({ enlarged = false }: ProfileCardProps) {
             <span className="circle circle2" />
             <span className="circle circle3" />
             <span className="circle circle4" />
-            <span className="circle circle5 overflow-hidden">
-              <img 
-                src="/avatar.jpg" 
-                alt="Avatar" 
-                className="w-full h-full object-cover"
-              />
+            <span className="circle circle5">
+              <span className="initials">SO</span>
             </span>
           </div>
 

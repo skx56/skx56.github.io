@@ -108,14 +108,10 @@ export default function Navbar() {
           <a
             href="/"
             className="flex items-center justify-center overflow-hidden rounded-full border-2 border-transparent hover:border-[#14B8A6] transition-all duration-300"
-            style={{ width: '40px', height: '40px', background: 'var(--bg-card)' }}
+            style={{ width: '40px', height: '40px', background: 'var(--bg-card)', color: 'var(--text-primary)' }}
             title="Home"
           >
-            <img 
-              src="/avatar.jpg" 
-              alt="Avatar" 
-              className="w-full h-full object-cover"
-            />
+            <span className="text-xs font-bold tracking-wide">SO</span>
           </a>
 
           {/* Desktop links */}

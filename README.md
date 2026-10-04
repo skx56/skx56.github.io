@@ -44,5 +44,4 @@ Pushing `master` runs `.github/workflows/deploy.yml` and publishes `out/` to [sk
 ## Edit
 
 - Resume: `public/SakshamOjha_Resume.pdf`
-- Avatar: `public/avatar.jpg`
 - Sections: `components/*Section.tsx`, `components/ProfileCard.tsx`, `components/HeroPaint.tsx`
