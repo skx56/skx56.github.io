@@ -38,7 +38,8 @@ const projects: Project[] = [
     tech: ['TypeScript', 'WebRTC', 'Twilio', 'VAD', 'Tool calling', 'TTS'],
     color: 'from-cyan-400 via-sky-500 to-indigo-500',
     accentColor: '#22D3EE',
-    live: '/echo',
+    github: 'https://github.com/skx56/Echo',
+    live: 'https://skx56.github.io/Echo/',
     emoji: '🎙️',
     headerPattern:
       'repeating-linear-gradient(90deg, rgba(255,255,255,0.18) 0 2px, transparent 2px 14px), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.35) 0 1px, transparent 1.5px)',

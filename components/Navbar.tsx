@@ -9,7 +9,7 @@ const navLinks = [
   { label: 'Experience', href: '/#experience' },
   { label: 'Leadership', href: '/#positions' },
   { label: 'Projects', href: '/#projects' },
-  { label: 'Echo', href: '/echo' },
+  { label: 'Echo', href: 'https://skx56.github.io/Echo/' },
   { label: 'Grain', href: '/grain' },
   { label: 'Skills', href: '/#skills' },
   { label: 'Contact', href: '/#contact' },
@@ -124,6 +124,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
+                {...(link.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 className="text-sm font-medium tracking-wide transition-all duration-300"
                 style={{ color: 'var(--text-secondary)' }}
                 onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
@@ -194,6 +195,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
+              {...(link.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
               className="text-sm font-medium py-2 transition-colors"
               style={{ color: 'var(--text-secondary)' }}
               onClick={() => setMenuOpen(false)}
