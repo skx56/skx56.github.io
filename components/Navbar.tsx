@@ -108,10 +108,15 @@ export default function Navbar() {
           <a
             href="/"
             className="flex items-center justify-center overflow-hidden rounded-full border-2 border-transparent hover:border-[#14B8A6] transition-all duration-300"
-            style={{ width: '40px', height: '40px', background: 'var(--bg-card)', color: 'var(--text-primary)' }}
+            style={{ width: '40px', height: '40px', background: 'var(--bg-card)' }}
             title="Home"
           >
-            <span className="text-xs font-bold tracking-wide">SO</span>
+            <img
+              src="/avatar.jpg"
+              alt="Saksham Ojha"
+              className="w-full h-full object-cover"
+              style={{ objectPosition: 'center top' }}
+            />
           </a>
 
           {/* Desktop links */}

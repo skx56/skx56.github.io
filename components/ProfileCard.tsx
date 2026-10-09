@@ -192,14 +192,14 @@ export default function ProfileCard({ enlarged = false }: ProfileCardProps) {
           display: grid; place-content: center;
           transition-delay: 1.6s;
           background: rgba(20, 184, 166, 0.55);
+          overflow: hidden;
         }
 
-        .profile-logo .circle5 .initials {
-          font-size: clamp(11px, 2vw, 18px);
-          font-weight: 800;
-          color: white;
-          font-family: var(--font-nunito), Georgia, sans-serif;
-          line-height: 1;
+        .profile-logo .circle5 img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center top;
         }
 
         /* Hover */
@@ -231,7 +231,7 @@ export default function ProfileCard({ enlarged = false }: ProfileCardProps) {
             <span className="circle circle3" />
             <span className="circle circle4" />
             <span className="circle circle5">
-              <span className="initials">SO</span>
+              <img src="/avatar.jpg" alt="Saksham Ojha" />
             </span>
           </div>
 
