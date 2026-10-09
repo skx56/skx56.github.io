@@ -26,15 +26,15 @@ const nunito = Nunito({
 export const metadata: Metadata = {
   title: 'Saksham Ojha — Full-Stack & Applied AI Developer',
   description:
-    'Portfolio of Saksham Ojha, a Full-Stack & Applied AI Developer from IIT Roorkee. Specializing in Go, React, TypeScript, LangChain, and AI-powered systems.',
+    'Portfolio of Saksham Ojha, a Full-Stack & Applied AI Developer from IIT Roorkee. Building voice agents, SQL agents, eval harnesses, and AI-powered products.',
   keywords: [
     'Saksham Ojha',
     'Full Stack Developer',
     'Applied AI Developer',
     'IIT Roorkee',
-    'Go Developer',
-    'React Developer',
+    'Python',
     'TypeScript',
+    'React Developer',
     'LangChain',
     'Portfolio',
   ],
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://skx56.dev',
+    url: 'https://skx56.github.io',
     title: 'Saksham Ojha — Full-Stack & Applied AI Developer',
     description:
       'Portfolio of Saksham Ojha, a Full-Stack & Applied AI Developer from IIT Roorkee.',

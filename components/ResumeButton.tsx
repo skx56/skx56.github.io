@@ -233,8 +233,8 @@ export default function ResumeButton() {
 
       <div className="resume-container">
         <a
-          href="/SakshamAdoni_Resume_main.pdf"
-          download="SakshamAdoni_Resume.pdf"
+          href="/SakshamOjha_Resume.pdf"
+          download="SakshamOjha_Resume.pdf"
           className={`resume-label ${status}`}
           onClick={handleClick}
           aria-label="Download Resume"
