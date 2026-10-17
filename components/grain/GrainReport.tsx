@@ -3,18 +3,13 @@
 import { useState, type ReactNode } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import type { RunResult } from '@/lib/grain/engine'
-import { formatDay } from '@/lib/grain/format'
+import { asNumber, formatByKind, formatDay } from '@/lib/grain/format'
 import type { Column } from '@/lib/grain/cases'
 
 function cellText(column: Column, value: string | number | null): string {
   if (value == null) return '—'
-  if (column.kind === 'inr') {
-    const cents = typeof value === 'number' ? value : Number(value)
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
-      maximumFractionDigits: 0,
-    }).format(cents / 100)
+  if (column.kind === 'inr' || column.kind === 'usd') {
+    return formatByKind(column.kind, asNumber(value))
   }
   if (column.kind === 'date') return formatDay(String(value))
   return String(value)
