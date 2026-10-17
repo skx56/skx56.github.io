@@ -1,22 +1,4 @@
-import { CASES, routeQuestion, type Column, type GrainCase, type Row } from './cases'
-import { CARD_CASES, routeCardQuestion } from './cardCases'
-
-export type BookId = 'card' | 'harbor'
-
-const BOOKS = {
-  harbor: {
-    cases: CASES,
-    route: routeQuestion,
-    refusal:
-      'Grain will not invent a metric for that. Ask about last quarter’s revenue, active customers, the leading category, or cash collected.',
-  },
-  card: {
-    cases: CARD_CASES,
-    route: routeCardQuestion,
-    refusal:
-      'Grain will not invent a metric for that. Ask about last quarter’s posted spend, active cardmembers, the leading category, or fraud loss.',
-  },
-} as const
+import { CASES, routeQuestion, type CaseId, type Column, type GrainCase, type Row } from './cases'
 import { asNumber, formatByKind, formatDelta, type ValueKind } from './format'
 
 export interface SqlExecResult {
@@ -117,15 +99,18 @@ function execute(db: Queryable, grainCase: GrainCase, asked: string): RunResult 
   }
 }
 
-export function answerQuestion(db: Queryable, asked: string, book: BookId = 'harbor', forcedId?: string): Outcome {
-  const selected = BOOKS[book]
-  const id = forcedId ?? selected.route(asked)
-  if (!id || !(id in selected.cases)) {
-    return { ok: false, message: selected.refusal }
+export function answerQuestion(db: Queryable, asked: string, forcedId?: CaseId): Outcome {
+  const id = forcedId ?? routeQuestion(asked)
+  if (!id) {
+    return {
+      ok: false,
+      message:
+        'Grain will not invent a metric for that. Ask about last quarter’s revenue, active customers, the leading category, or cash collected.',
+    }
   }
 
   try {
-    return { ok: true, result: execute(db, selected.cases[id as keyof typeof selected.cases], asked.trim()) }
+    return { ok: true, result: execute(db, CASES[id], asked.trim()) }
   } catch (error) {
     const detail = error instanceof Error ? error.message : 'The ledger rejected the query.'
     return { ok: false, message: detail }

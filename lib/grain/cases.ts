@@ -7,7 +7,7 @@ export type Row = Record<string, string | number | null>
 export interface Column {
   key: string
   label: string
-  kind?: 'inr' | 'usd' | 'date' | 'text'
+  kind?: 'inr' | 'date' | 'text'
 }
 
 export interface Sensitivity {
@@ -26,7 +26,7 @@ export interface Presentation {
 }
 
 export interface GrainCase {
-  id: string
+  id: CaseId
   question: string
   tables: string[]
   valueKind: ValueKind

@@ -4,40 +4,9 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import ThemeToggle from '@/components/ThemeToggle'
 import GrainReport from '@/components/grain/GrainReport'
-import { answerQuestion, type BookId, type Outcome, type Queryable } from '@/lib/grain/engine'
-import { PROMPTS } from '@/lib/grain/cases'
+import { answerQuestion, type Outcome, type Queryable } from '@/lib/grain/engine'
+import { PROMPTS, type CaseId } from '@/lib/grain/cases'
 import { SCHEMA_SQL, SEED_SQL, TABLES, TRAPS } from '@/lib/grain/seed'
-import { CARD_PROMPTS } from '@/lib/grain/cardCases'
-import { CARD_SCHEMA_SQL, CARD_SEED_SQL, CARD_TABLES, CARD_TRAPS } from '@/lib/grain/cardSeed'
-
-const BOOKS = {
-  card: {
-    id: 'card' as const,
-    name: 'Lumen Card',
-    kicker: 'Lumen Card · charge-card book · closed 4 Oct 2026',
-    intro:
-      'Last quarter is Q3 2026. This is a charge-card book, the kind an issuer like American Express closes every night: an authorization, a posting, and a fraud write-off are different facts. Your words pick a defended query. They are never concatenated into SQL.',
-    placeholder: 'Ask about spend, cardmembers, category, or fraud loss',
-    tables: CARD_TABLES,
-    traps: CARD_TRAPS,
-    schemaSql: CARD_SCHEMA_SQL,
-    prompts: CARD_PROMPTS,
-    opening: CARD_PROMPTS[0],
-  },
-  harbor: {
-    id: 'harbor' as const,
-    name: 'Harbor & Co.',
-    kicker: 'Harbor & Co. · books closed 4 Oct 2026',
-    intro:
-      'Last quarter is Q3 2026. The ledger has three meanings of money, a soft-deleted buyer, and two orders that fall on different sides of midnight depending on the clock. Your words pick a defended query. They are never concatenated into SQL.',
-    placeholder: 'Ask about revenue, customers, category, or cash',
-    tables: TABLES,
-    traps: TRAPS,
-    schemaSql: SCHEMA_SQL,
-    prompts: PROMPTS,
-    opening: PROMPTS[0],
-  },
-}
 
 type Ledger = Queryable & { close: () => void }
 
@@ -45,8 +14,7 @@ export default function GrainApp() {
   const dbRef = useRef<Ledger | null>(null)
   const [ready, setReady] = useState(false)
   const [bootError, setBootError] = useState<string | null>(null)
-  const [book, setBook] = useState<BookId>('card')
-  const [draft, setDraft] = useState(BOOKS.card.opening.label)
+  const [draft, setDraft] = useState('What was revenue last quarter?')
   const [outcome, setOutcome] = useState<Outcome | null>(null)
   const [activeTables, setActiveTables] = useState<string[]>([])
 
@@ -59,18 +27,17 @@ export default function GrainApp() {
         const loaded = await import('sql.js')
         const initSqlJs = loaded.default
         const SQL = await initSqlJs({
-          locateFile: (file) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/${file}`,
+          locateFile: (file) => `/${file}`,
         })
         const db = new SQL.Database()
         db.run(SEED_SQL)
-        db.run(CARD_SEED_SQL)
         if (cancelled) {
           db.close()
           return
         }
         database = db
         dbRef.current = db
-        const first = answerQuestion(db, BOOKS.card.opening.label, 'card', BOOKS.card.opening.id)
+        const first = answerQuestion(db, 'What was revenue last quarter?', 'revenue')
         setOutcome(first)
         setActiveTables(first.ok ? first.result.tables : [])
         setReady(true)
@@ -88,17 +55,14 @@ export default function GrainApp() {
     }
   }, [])
 
-  function ask(text: string, nextBook: BookId = book, forcedId?: string) {
+  function ask(text: string, forcedId?: CaseId) {
     const trimmed = text.trim()
     if (!trimmed || !dbRef.current) return
-    const next = answerQuestion(dbRef.current, trimmed, nextBook, forcedId)
-    setBook(nextBook)
+    const next = answerQuestion(dbRef.current, trimmed, forcedId)
     setDraft(trimmed)
     setOutcome(next)
     setActiveTables(next.ok ? next.result.tables : [])
   }
-
-  const activeBook = BOOKS[book]
 
   return (
     <div className="grain-app">
@@ -114,31 +78,20 @@ export default function GrainApp() {
       </header>
 
       <main className="section-container grain-main">
-        <div className="grain-books" role="tablist" aria-label="Ledger">
-          {(Object.keys(BOOKS) as BookId[]).map((id) => (
-            <button
-              key={id}
-              type="button"
-              role="tab"
-              aria-selected={book === id}
-              className={book === id ? 'is-on' : ''}
-              disabled={!ready}
-              onClick={() => ask(BOOKS[id].opening.label, id, BOOKS[id].opening.id)}
-            >
-              {BOOKS[id].name}
-            </button>
-          ))}
-        </div>
-        <p className="grain-kicker">{activeBook.kicker}</p>
+        <p className="grain-kicker">Harbor &amp; Co. · books closed 4 Oct 2026</p>
         <h1>
           The SQL agent that{' '}
           <span className="gradient-text">shows its work.</span>
         </h1>
-        <p className="grain-intro">{activeBook.intro}</p>
+        <p className="grain-intro">
+          Last quarter is Q3 2026. The ledger has three meanings of money, a soft-deleted buyer,
+          and two orders that fall on different sides of midnight depending on the clock. Your
+          words pick a defended query. They are never concatenated into SQL.
+        </p>
 
         <section className="grain-schema" aria-label="Ledger tables">
           <div className="grain-table-pills">
-            {activeBook.tables.map((table) => {
+            {TABLES.map((table) => {
               const on = activeTables.includes(table.name)
               return (
                 <span key={table.name} className={on ? 'is-on' : ''} title={table.note}>
@@ -148,7 +101,7 @@ export default function GrainApp() {
             })}
           </div>
           <ul>
-            {activeBook.traps.map((trap) => (
+            {TRAPS.map((trap) => (
               <li key={trap}>{trap}</li>
             ))}
           </ul>
@@ -168,7 +121,7 @@ export default function GrainApp() {
               className="grain-input"
               value={draft}
               onChange={(event) => setDraft(event.target.value)}
-              placeholder={activeBook.placeholder}
+              placeholder="Ask about revenue, customers, category, or cash"
               autoComplete="off"
               spellCheck={false}
               disabled={!ready}
@@ -178,7 +131,7 @@ export default function GrainApp() {
             </button>
           </div>
           <div className="grain-chips">
-            {activeBook.prompts.map((prompt) => {
+            {PROMPTS.map((prompt) => {
               const selected = outcome?.ok && outcome.result.question === prompt.label
               return (
                 <button
@@ -186,7 +139,7 @@ export default function GrainApp() {
                   type="button"
                   className={selected ? 'is-on' : ''}
                   disabled={!ready}
-                  onClick={() => ask(prompt.label, book, prompt.id)}
+                  onClick={() => ask(prompt.label, prompt.id)}
                 >
                   {prompt.label}
                 </button>
@@ -206,7 +159,7 @@ export default function GrainApp() {
 
         <details className="grain-schema-sql">
           <summary>Ledger schema</summary>
-          <pre>{activeBook.schemaSql}</pre>
+          <pre>{SCHEMA_SQL}</pre>
         </details>
 
         <p className="grain-foot">SQLite is running in this tab. Nothing is sent to a server.</p>
@@ -228,12 +181,6 @@ const GRAIN_CSS = `
 .grain-back { color: var(--text-secondary); text-decoration: none; font-weight: 700; font-size: 14px; }
 .grain-back:hover { color: #14B8A6; }
 .grain-main { padding-top: 3.5rem; padding-bottom: 5rem; }
-.grain-books { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.25rem; }
-.grain-books button {
-  border-radius: 999px; border: 1px solid var(--bg-card-border); background: var(--bg-card);
-  color: var(--text-secondary); font: inherit; font-weight: 800; padding: 0.45rem 0.9rem; cursor: pointer;
-}
-.grain-books button.is-on { color: #042f2e; border-color: transparent; background: linear-gradient(135deg, #14B8A6, #0EA5E9); }
 .grain-kicker {
   color: #14B8A6; letter-spacing: 0.18em; text-transform: uppercase;
   font-size: 11px; font-weight: 800; margin-bottom: 0.75rem;

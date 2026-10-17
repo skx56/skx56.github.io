@@ -1,4 +1,4 @@
-export type ValueKind = 'inr' | 'usd' | 'count'
+export type ValueKind = 'inr' | 'count'
 
 export function asNumber(value: unknown): number {
   if (typeof value === 'number' && Number.isFinite(value)) return value
@@ -19,22 +19,12 @@ export function formatInr(cents: number): string {
   }).format(rupees)
 }
 
-export function formatUsd(cents: number): string {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    maximumFractionDigits: 0,
-  }).format(cents / 100)
-}
-
 export function formatCount(value: number): string {
   return new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(value)
 }
 
 export function formatByKind(kind: ValueKind, value: number): string {
-  if (kind === 'inr') return formatInr(value)
-  if (kind === 'usd') return formatUsd(value)
-  return formatCount(value)
+  return kind === 'inr' ? formatInr(value) : formatCount(value)
 }
 
 export function formatDelta(kind: ValueKind, from: number, to: number): string {

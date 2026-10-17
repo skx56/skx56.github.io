@@ -55,8 +55,8 @@ const projects: Project[] = [
     tagline: 'Lock the metric, the join, and the grain — then run the query',
     description: [
       'Built an in-browser SQL agent that will not return a number until it locks a metric definition, the join path, and the grain of the result.',
-      'Seeded Lumen Card, a charge-card book in the style of an American Express issuer, where posted spend, swipe time, and fraud write-offs are different queries and a naive spend total comes out at $19,800 against a defended $10,500.',
-      'Ran both the rejected query and the shipped query in SQLite compiled to WebAssembly, with the question mapped to a defended case rather than concatenated into SQL.',
+      'Seeded Harbor & Co. with split payments, soft deletes, tag fan-out, and a UTC versus IST quarter boundary so the rejected query and the defended query disagree on purpose.',
+      'Ran both queries in SQLite compiled to WebAssembly, with natural language mapped to defended queries rather than concatenated into SQL.',
     ],
     tech: ['TypeScript', 'SQLite WASM', 'Next.js', 'SQL'],
     color: 'from-indigo-500 via-violet-500 to-cyan-500',
