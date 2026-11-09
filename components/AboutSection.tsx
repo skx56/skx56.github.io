@@ -7,7 +7,7 @@ const education = {
   institution: 'Indian Institute of Technology Roorkee',
   location: 'Roorkee, India',
   degree: 'B.Tech',
-  period: '2023 – 2027 · CGPA 7.12',
+  period: '2023 – 2027',
   coursework: ['Machine Learning', 'Deep Learning', 'Generative AI', 'Data Science', 'Product'],
 }
 
