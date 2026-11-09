@@ -16,8 +16,21 @@ const positions = [
     points: [
       'Representing 650+ residents with hostel administration',
       'Managing a Rs. 1M+ welfare fund for infrastructure upgrades',
-      'Optimizing a Rs. 250K+ budget for sports & amenities',
-      'Resolving day-to-day resident issues at scale',
+      'Optimizing a Rs. 250K+ budget for sports inventory and jerseys',
+    ],
+  },
+  {
+    role: 'Web Developer',
+    org: 'Student Technical Council',
+    orgFull: 'Student Technical Council, IIT Roorkee',
+    period: 'Dec 2025 – Present',
+    color: '#0EA5E9',
+    colorB: '#22D3EE',
+    logo: '/images/indian-institute-of-technology-roorkee-logo.png',
+    points: [
+      'Built the Srishti hackathon site with code splitting and lazy loading',
+      'Supporting 20+ student clubs and their technical work',
+      'Coordinating campus technical events and digital initiatives',
     ],
   },
   {
@@ -29,10 +42,22 @@ const positions = [
     colorB: '#22D3EE',
     logo: '/images/indian-institute-of-technology-roorkee-logo.png',
     points: [
-      'Shipping software & AI/ML products from idea to deploy',
-      'Coordinating Tinkerquest with 1,000+ participants',
-      'Building with cross-functional student teams',
-      'Supporting national-level hackathon operations',
+      'Shipping software and AI/ML projects with student teams',
+      'Coordinated Tinkerquest, a national hackathon with 1,000+ participants',
+      'Full marks on the e-Yantra OpenCV assignment (IIT Bombay)',
+    ],
+  },
+  {
+    role: 'Member',
+    org: 'Watch Out',
+    orgFull: 'Watch Out, IIT Roorkee',
+    period: 'Dec 2024 – Present',
+    color: '#8B5CF6',
+    colorB: '#38BDF8',
+    logo: '/images/indian-institute-of-technology-roorkee-logo.png',
+    points: [
+      'Editorial planning for academics, placements, and campus affairs',
+      'Publishing reports that keep campus decisions visible',
     ],
   },
   {
@@ -44,10 +69,21 @@ const positions = [
     colorB: '#FBBF24',
     logo: '/images/indian-institute-of-technology-roorkee-logo.png',
     points: [
-      'Directed end-to-end technical competitions',
-      'Scaled engagement for 3,000+ fest attendees',
-      'Managed logistics for a major student tech fest',
-      'Coordinated judges, volunteers, and event flows',
+      'Judged and coordinated Crawl-o-tron and Nano Navigator',
+      'Asia’s second-largest student-run tech fest, 3,000+ participants',
+    ],
+  },
+  {
+    role: 'Participant',
+    org: 'e-Yantra',
+    orgFull: 'e-Yantra, IIT Bombay',
+    period: 'Aug 2024 – Dec 2024',
+    color: '#F43F5E',
+    colorB: '#FB7185',
+    logo: '/images/indian-institute-of-technology-roorkee-logo.png',
+    points: [
+      'Automated arena mapping and obstacle detection',
+      'ArUco markers and image processing on the competition task',
     ],
   },
 ]
@@ -174,7 +210,7 @@ export default function PositionsSection() {
 
         {/* Cards */}
         <motion.div
-          className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto"
+          className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-6xl mx-auto"
           variants={container}
           initial="hidden"
           whileInView="show"

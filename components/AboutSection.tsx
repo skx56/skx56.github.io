@@ -6,24 +6,33 @@ import { motion } from 'framer-motion'
 const education = {
   institution: 'Indian Institute of Technology Roorkee',
   location: 'Roorkee, India',
-  degree: 'B.Tech',
-  period: 'Aug 2023 – May 2027',
-  coursework: ['Probability & Statistics', 'Linear Algebra', 'Calculus', 'Data Structures & Algorithms', 'Machine Learning', 'Data Science'],
+  degree: 'B.Tech, Metallurgical & Materials Engineering',
+  period: '2023 – 2027 · CGPA 7.12',
+  coursework: ['Machine Learning', 'Deep Learning', 'Generative AI', 'Data Science', 'Product'],
 }
 
 const facts = [
   { emoji: '📍', label: 'Roorkee, India' },
-  { emoji: '⚡', label: 'Python & TypeScript' },
+  { emoji: '⚡', label: 'Python, C++ & SQL' },
   { emoji: '🤖', label: 'Applied AI / RAG' },
-  { emoji: '📊', label: 'Product & Analytics' },
-  { emoji: '☕', label: 'Coffee-powered' },
+  { emoji: '🏆', label: 'IndeHub ’25 winner' },
+  { emoji: '📊', label: 'Product & analytics' },
 ]
 
 const stats = [
-  { value: '10+', label: 'Projects shipped', color: '#14B8A6' },
-  { value: '3', label: 'Internships', color: '#22D3EE' },
-  { value: '3', label: 'Leadership roles', color: '#F97316' },
-  { value: '20+', label: 'Technologies', color: '#10B981' },
+  { value: '6', label: 'Internships', color: '#14B8A6' },
+  { value: '99.68', label: 'JEE Main %ile', color: '#22D3EE' },
+  { value: '2', label: 'Hackathon podiums', color: '#F97316' },
+  { value: '15+', label: 'Projects', color: '#10B981' },
+]
+
+const awards = [
+  'JEE Main 2023 — 99.68 %ile, AIR 3,757',
+  'NTSE — top 2,000 nationwide',
+  'IOQM 2020 — Certificate of Merit, top 300',
+  'JSTSE — Rank 24 of 50,000+',
+  'Winner, The IndeHub Hackathon 2025',
+  '2nd runner-up, Gen AI Exchange Hackathon 2025 (Google Cloud)',
 ]
 
 const container = {
@@ -152,8 +161,8 @@ export default function AboutSection() {
                 .
               </p>
               <p className="text-base leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
-                3rd-year student at <strong style={{ color: 'var(--text-primary)' }}>IIT Roorkee</strong>.
-                Most of my time goes into building software — I gravitate toward{' '}
+                Fourth-year student at <strong style={{ color: 'var(--text-primary)' }}>IIT Roorkee</strong>,
+                studying Metallurgical &amp; Materials Engineering. Most of what I ship is software — I gravitate toward{' '}
                 <span className="about-highlight" style={{ color: 'var(--paint-purple)', backgroundImage: 'linear-gradient(90deg, var(--paint-purple), transparent)' }}>
                   AI systems
                 </span>,{' '}
@@ -250,6 +259,28 @@ export default function AboutSection() {
               </p>
             </motion.div>
           ))}
+        </motion.div>
+
+        <motion.div
+          className="mt-6 rounded-2xl px-6 py-6 md:px-8"
+          style={{
+            background: 'var(--bg-card)',
+            border: '1px solid var(--bg-card-border)',
+            boxShadow: '0 4px 20px var(--shadow)',
+          }}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.6 }}
+        >
+          <p className="text-[11px] font-bold tracking-[0.2em] uppercase mb-4" style={{ color: 'var(--paint-purple)' }}>
+            Selected achievements
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {awards.map((award) => (
+              <span key={award} className="about-badge">{award}</span>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

@@ -9,8 +9,6 @@ const navLinks = [
   { label: 'Experience', href: '/#experience' },
   { label: 'Leadership', href: '/#positions' },
   { label: 'Projects', href: '/#projects' },
-  { label: 'Echo', href: 'https://skx56.github.io/Echo/' },
-  { label: 'Grain', href: '/grain' },
   { label: 'Skills', href: '/#skills' },
   { label: 'Contact', href: '/#contact' },
 ]

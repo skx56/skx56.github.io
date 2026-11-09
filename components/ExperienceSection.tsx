@@ -5,52 +5,98 @@ import { FiExternalLink, FiMapPin, FiCalendar } from 'react-icons/fi'
 
 const experiences = [
   {
-    company: 'Edden Internet Pvt. Ltd.',
+    company: 'Jastro',
     url: 'https://www.linkedin.com/in/saksham-ojha-472706292/',
-    role: 'AI/ML Engineering Intern',
-    period: 'Dec 2024 – Jan 2025',
+    role: 'AI Engineering Intern',
+    period: 'Jul 2026 – Aug 2026',
     location: 'Remote',
     color: '#22D3EE',
     colorB: '#38BDF8',
     current: false,
     points: [
-      'Contributed to end-to-end automation of short-form video creation using GenAI — research, scripting, and synthesis workflows.',
-      'Built and integrated ML pipelines to personalize content recommendations and boost engagement across platforms.',
-      'Collaborated with cross-functional teams to streamline product workflows and accelerate AI feature rollouts.',
+      'Built AI for personalized digital reports, using LLMs to generate and refine user-specific content.',
+      'Tightened automated generation and evaluation so report quality stayed consistent as volume scaled.',
     ],
-    tags: ['GenAI', 'ML Pipelines', 'Recommendations', 'Product'],
+    tags: ['LLMs', 'Content generation', 'Evaluation'],
+  },
+  {
+    company: 'SuperErgo',
+    url: 'https://www.linkedin.com/in/saksham-ojha-472706292/',
+    role: "Founder's Office Intern",
+    period: 'May 2026 – Jun 2026',
+    location: 'Remote',
+    color: '#A78BFA',
+    colorB: '#818CF8',
+    current: false,
+    points: [
+      'Ran market research and competitor benchmarking to inform positioning and growth bets.',
+      'Turned performance and bottleneck analysis into recommendations the team could act on.',
+    ],
+    tags: ['Strategy', 'Research', 'Operations'],
+  },
+  {
+    company: 'Jastro',
+    url: 'https://www.linkedin.com/in/saksham-ojha-472706292/',
+    role: 'Product Intern',
+    period: 'Dec 2025 – Feb 2026',
+    location: 'Remote',
+    color: '#38BDF8',
+    colorB: '#14B8A6',
+    current: false,
+    points: [
+      'Mapped user journeys across astrology products and found friction in onboarding, report discovery, and content.',
+      'Wrote requirements and helped prioritize features for personalized reports.',
+      'Compared competitor personalization and monetization to find where the product could stand apart.',
+    ],
+    tags: ['Product', 'User journeys', 'Prioritization'],
   },
   {
     company: 'SR Medicare Pvt. Ltd.',
     url: 'https://www.linkedin.com/in/saksham-ojha-472706292/',
     role: 'Data Analytics Intern',
-    period: '2024',
+    period: 'May 2025 – Jun 2025',
     location: 'India',
-    color: '#38BDF8',
-    colorB: '#14B8A6',
+    color: '#14B8A6',
+    colorB: '#10B981',
     current: false,
     points: [
-      'Optimized inventory and costing data to improve procurement decisions, lifting product margins by ~15%.',
-      'Built automated MIS dashboards to track sales performance, reducing manual reporting effort by ~75%.',
-      'Improved supply-chain efficiency by monitoring export timelines and raising inventory turnover by ~10%.',
+      'Analysed inventory, costing, and procurement data to support purchasing decisions.',
+      'Built MIS dashboards for sales performance and the metrics the business actually watched.',
+      'Traced inventory levels and export timelines to surface supply-chain bottlenecks.',
     ],
-    tags: ['Analytics', 'Dashboards', 'SQL', 'MIS'],
+    tags: ['Analytics', 'MIS', 'SQL'],
   },
   {
     company: 'Vary Gaming',
     url: 'https://www.linkedin.com/in/saksham-ojha-472706292/',
     role: 'Growth Intern',
-    period: '2024',
+    period: 'Mar 2025 – Apr 2025',
     location: 'Remote',
     color: '#F97316',
     colorB: '#FBBF24',
     current: false,
     points: [
-      'Boosted reach by 20% through digital campaigns in partnership with marketing and product teams.',
-      'Improved campaign performance by analyzing 5+ KPIs with Google Analytics and Excel.',
-      'Refined brand positioning via market and competitor research across 3 verticals.',
+      'Grew reach 20% through digital campaigns with marketing and product.',
+      'Read 5+ KPIs in Google Analytics and Excel to tune campaign and product calls.',
+      'Sharpened positioning from competitor research across three verticals.',
     ],
-    tags: ['Growth', 'Google Analytics', 'Campaigns', 'KPIs'],
+    tags: ['Growth', 'Google Analytics', 'KPIs'],
+  },
+  {
+    company: 'Edden Internet Pvt. Ltd.',
+    url: 'https://www.linkedin.com/in/saksham-ojha-472706292/',
+    role: 'AI/ML Engineering Intern',
+    period: 'Dec 2024 – Jan 2025',
+    location: 'Remote',
+    color: '#0EA5E9',
+    colorB: '#22D3EE',
+    current: false,
+    points: [
+      'Automated short-form video creation with GenAI across research, scripting, and synthesis.',
+      'Built ML pipelines that personalized recommendations and made content more relevant.',
+      'Worked across teams to cut manual steps and scale AI-assisted delivery.',
+    ],
+    tags: ['GenAI', 'Recommendations', 'ML pipelines'],
   },
 ]
 
@@ -270,7 +316,7 @@ export default function ExperienceSection() {
         <div className="exp-timeline">
           {experiences.map((exp, idx) => (
             <div
-              key={exp.company}
+              key={`${exp.role}-${exp.company}`}
               className="exp-item reveal"
               style={{ transitionDelay: `${idx * 0.12}s` } as React.CSSProperties}
             >

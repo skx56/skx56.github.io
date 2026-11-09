@@ -240,7 +240,7 @@ export default function ProfileCard({ enlarged = false }: ProfileCardProps) {
             <span className="title">Saksham Ojha</span>
             <span className="text">
               Full-Stack &amp; Applied AI Developer<br />
-              IIT Roorkee · B.Tech &apos;27
+              IIT Roorkee · B.Tech &apos;27 · CGPA 7.12
             </span>
           </div>
 

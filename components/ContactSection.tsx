@@ -47,6 +47,7 @@ export default function ContactSection() {
         <div className="flex flex-wrap justify-center gap-6 mb-16">
           {[
             { icon: FiMail, label: 'sakshamojha96@gmail.com', href: 'mailto:sakshamojha96@gmail.com', color: 'var(--paint-red)' },
+            { icon: FiMail, label: 'saksham_o@mt.iitr.ac.in', href: 'mailto:saksham_o@mt.iitr.ac.in', color: 'var(--paint-orange)' },
             { icon: FiGithub, label: 'github.com/skx56', href: 'https://github.com/skx56', color: 'var(--paint-purple)' },
             { icon: FiLinkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/saksham-ojha-472706292/', color: 'var(--paint-blue)' },
           ].map(({ icon: Icon, label, href, color }) => (

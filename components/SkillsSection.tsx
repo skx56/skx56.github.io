@@ -9,28 +9,28 @@ const skillGroups = [
     icon: <FaCode />,
     color: '#0EA5E9',
     colorB: '#22D3EE',
-    skills: ['Python', 'TypeScript', 'JavaScript', 'SQL', 'C++', 'Bash'],
+    skills: ['Python', 'C++', 'SQL', 'TypeScript', 'JavaScript'],
   },
   {
     category: 'AI / ML',
     icon: <FaBrain />,
     color: '#14B8A6',
     colorB: '#0EA5E9',
-    skills: ['LangChain', 'RAG', 'Voice agents', 'PyTorch', 'scikit-learn', 'OpenCV', 'SHAP', 'Embeddings'],
+    skills: ['PyTorch', 'Transformers', 'LangChain', 'scikit-learn', 'XGBoost', 'LightGBM', 'OpenCV', 'Diffusers'],
   },
   {
     category: 'Full Stack',
     icon: <FaGlobe />,
     color: '#10B981',
     colorB: '#22D3EE',
-    skills: ['Next.js', 'React', 'Node.js', 'WebRTC', 'FastAPI', 'Prisma', 'Clerk', 'Streamlit'],
+    skills: ['Next.js', 'React', 'FastAPI', 'WebRTC', 'Streamlit', 'Node.js'],
   },
   {
-    category: 'Product / Data',
+    category: 'Data',
     icon: <FaCubes />,
     color: '#F97316',
     colorB: '#FBBF24',
-    skills: ['Pandas', 'SQL', 'Power BI', 'Google Analytics', 'A/B Thinking', 'Git'],
+    skills: ['Pandas', 'NumPy', 'Power BI', 'Matplotlib', 'FAISS', 'SQLite'],
   },
 ]
 
