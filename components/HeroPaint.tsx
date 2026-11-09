@@ -139,7 +139,7 @@ export default function PaintHero() {
               letterSpacing: '0.12em',
             }}
           >
-            IIT Roorkee · Metallurgical &amp; Materials · B.Tech ’27
+            IIT Roorkee · B.Tech ’27
           </p>
         </div>
 
